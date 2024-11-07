@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome_text">გამარჯობა</string>
+    <string name="email_text">იმეილი</string>
+    <string name="password_text">პასვორდი</string>
+    <string name="continue_button">გაგრძელება</string>
+</resources>
