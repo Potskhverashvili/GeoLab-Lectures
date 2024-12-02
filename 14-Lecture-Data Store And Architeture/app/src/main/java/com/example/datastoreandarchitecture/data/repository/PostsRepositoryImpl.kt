@@ -1,6 +1,8 @@
 package com.example.datastoreandarchitecture.data.repository
 
+import com.example.datastoreandarchitecture.core.NetworkCallHelper
 import com.example.datastoreandarchitecture.core.OperationStatus
+import com.example.datastoreandarchitecture.core.map
 import com.example.datastoreandarchitecture.data.remote.RetrofitInstance
 import com.example.datastoreandarchitecture.data.toPost
 import com.example.datastoreandarchitecture.domain.model.Post
@@ -10,28 +12,23 @@ class PostsRepositoryImpl : PostsRepository {
 
     private val postService = RetrofitInstance.postService
 
+    // get all post
     override suspend fun getPostList(): OperationStatus<List<Post>> {
-        return try {
-            OperationStatus.Success(
-                postService.getPostsList()
-                    .body()!!.map { postDto ->
-                        postDto.toPost()
-                    }
-            )
-        } catch (e: Exception) {
-            OperationStatus.Failure(e)
+        return NetworkCallHelper.safeApiCall {
+            postService.getPostsList()
+        }.map { postDtoList ->
+            postDtoList.map { postDto ->
+                postDto.toPost()
+            }
         }
     }
 
+    // get post by id
     override suspend fun getPostById(id: Int): OperationStatus<Post> {
-        return try {
-            OperationStatus.Success(
-                postService.getPostById(id)
-                    .body()!!
-                    .toPost()
-            )
-        } catch (e: Exception) {
-            OperationStatus.Failure(e)
+        return NetworkCallHelper.safeApiCall {
+            postService.getPostById(id)
+        }.map { postDto ->
+            postDto.toPost()
         }
     }
 }
