@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drinks_nav_graph"
+    app:startDestination="@id/drinksListFragment">
+    <fragment
+        android:id="@+id/drinksListFragment"
+        android:name="com.example.coctailsapplication.presentation.screens.drinks_list.DrinksListFragment"
+        android:label="DrinksListFragment"
+        tools:layout="@layout/item_drink" />
+</navigation>
