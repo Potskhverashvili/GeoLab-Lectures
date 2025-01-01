@@ -1,5 +1,6 @@
 package com.example.nestedscrollviewexample.adapter
 
+import android.util.Log.d
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -26,9 +27,12 @@ class ProductsPageContentAdapter(
     class ProductViewHolder(private val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product) = with(binding) {
+
+            d("MyLog" , product.imageUrl)
             Glide.with(productImageView)
                 .load(product.imageUrl)
                 .into(productImageView)
+
             nameTextView.text = product.name
             descriptionTextView.text = product.description
             priceTextView.text = "${product.price}$"
