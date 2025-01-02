@@ -1,17 +1,19 @@
 package com.example.composesecondlecutre.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
@@ -37,7 +39,7 @@ import com.example.composesecondlecutre.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen() {
-    // --------------- Scaffold ---------------
+    // ------- Scaffold ----------
     Scaffold(
         // --- Top Bar ---
         topBar = {
@@ -100,63 +102,92 @@ fun ProfileScreen() {
             }
         }
     ) { paddingValue ->
-
-        // --- Profile Image ---
         Column(
             modifier = Modifier.padding(paddingValue)
         ) {
+            // --- User Profile ---
+            UserItem()
+            Spacer(modifier = Modifier.height(28.dp))
 
-            Row(
-                modifier = Modifier.padding(horizontal = 18.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Image(
-                    modifier = Modifier.size(64.dp),
-                    painter = painterResource(R.drawable.img_profile_picture),
-                    contentDescription = null
-                )
-
-                Spacer(modifier = Modifier.width(18.dp))
-                Column {
-                    Text(
-                        text = "Matilda Brown",
-                        fontWeight = FontWeight.SemiBold,
-                        fontSize = 18.sp
-                    )
-                    Text(
-                        text = "matildabrown@gmail.com",
-                        color = Color.Gray,
-                        fontSize = 14.sp
-                    )
-                }
-            }
+            // ---Profile Elements ---
+            ProfileOptionItem(
+                "My Orders",
+                "Already have 12 orders"
+            )
+            ProfileOptionItem(
+                "Shipping Addresses",
+                "3 Addresses"
+            )
+            ProfileOptionItem(
+                "Settings",
+                "Notifications, password"
+            )
         }
+    }
+}
 
-        Spacer(modifier = Modifier.height(28.dp))
-        // --- Elements ---
-        Row(
-            modifier = Modifier.padding(
+// -------- User Item ------------
+@Composable
+fun UserItem() {
+    Row(
+        modifier = Modifier.padding(horizontal = 18.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Image(
+            modifier = Modifier.size(64.dp),
+            painter = painterResource(R.drawable.img_profile_picture),
+            contentDescription = null
+        )
+
+        Spacer(modifier = Modifier.width(18.dp))
+        Column {
+            Text(
+                text = "Matilda Brown",
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 18.sp
+            )
+            Text(
+                text = "matildabrown@gmail.com",
+                color = Color.Gray,
+                fontSize = 14.sp
+            )
+        }
+    }
+}
+
+// ------ Profile Element -----------
+@Composable
+fun ProfileOptionItem(
+    text: String,
+    description: String
+) {
+    Row(
+        modifier = Modifier
+            .padding(
                 vertical = 18.dp,
                 horizontal = 16.dp
             )
-        ) {
-            Column {
-                Text(
-                    text = "My Orders",
-                    fontSize = 16.sp
-                )
-                Spacer(modifier = Modifier.height(10.dp))
-                Text(
-                    text = "Already have 12 orders",
-                    fontSize = 16.sp
-                )
-            }
-            Icon(
-                imageVector = Icons.Default.ArrowForward,
-                contentDescription = null
+            .fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Column {
+            Text(
+                text = text,
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 16.sp
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = description,
+                fontSize = 16.sp
             )
         }
-
+        Icon(
+            imageVector = Icons.Default.KeyboardArrowRight,
+            contentDescription = null
+        )
     }
 }
 
