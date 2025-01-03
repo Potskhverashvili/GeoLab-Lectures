@@ -1,4 +1,4 @@
-package com.example.mvvm.data
+package com.example.mvvm.data.model
 
 data class CharactersList(
     val results: List<CharacterItem>,

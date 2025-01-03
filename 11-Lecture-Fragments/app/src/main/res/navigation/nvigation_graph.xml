@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/nvigation_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nvigation_graph"
+    app:startDestination="@id/sendMessageFragment">
+
+    <fragment
+        android:id="@+id/sendMessageFragment"
+        android:name="com.example.fragments.SendMessageFragment"
+        android:label="SendMessageFragment"
+        tools:layout="@layout/fragment_send_message">
+        <action
+            android:id="@+id/to_home_fragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.fragments.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <argument
+            android:name="message"
+            app:argType="string"
+            android:defaultValue="Kotlin" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.fragments.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_sendMessageFragment"
+            app:destination="@id/sendMessageFragment" />
+    </fragment>
+
 
 </navigation>

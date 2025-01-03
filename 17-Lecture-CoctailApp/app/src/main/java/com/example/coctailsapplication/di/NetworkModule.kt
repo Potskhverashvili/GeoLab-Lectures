@@ -16,6 +16,5 @@ val networkModule = module {
         get<Retrofit>().create(DrinksService::class.java)
     }
 
-
     // factory -> it creates new instance every time
 }

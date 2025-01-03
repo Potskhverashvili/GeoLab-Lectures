@@ -28,7 +28,6 @@ class ProductsPageContentAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(product: Product) = with(binding) {
 
-            d("MyLog" , product.imageUrl)
             Glide.with(productImageView)
                 .load(product.imageUrl)
                 .into(productImageView)

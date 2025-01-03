@@ -43,8 +43,10 @@ android {
 
 dependencies {
 
+    // Firebase
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
+
     // Views/Fragments integration
     val navVersion = "2.8.4"
     implementation("androidx.navigation:navigation-fragment:$navVersion")

@@ -5,12 +5,13 @@ sealed interface OperationStatus<SuccessType> {
     data class Failure<SuccessType>(val exception: Exception) : OperationStatus<SuccessType>
 }
 
+// ------------------------- Mapper -----------------------------
 fun <FromType, ToType> OperationStatus<FromType>.map(
     mapper: (FromType) -> ToType,
 ): OperationStatus<ToType> {
     return when (this) {
-        is OperationStatus.Failure -> OperationStatus.Failure(exception)
         is OperationStatus.Success -> OperationStatus.Success(mapper(value))
+        is OperationStatus.Failure -> OperationStatus.Failure(exception)
     }
 }
 

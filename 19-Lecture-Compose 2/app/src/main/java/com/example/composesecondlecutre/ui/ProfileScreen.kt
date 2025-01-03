@@ -59,6 +59,7 @@ fun ProfileScreen() {
                         Icon(Icons.Default.Search, contentDescription = null)
                     }
                 },
+
                 // --- navigationIcon ---
                 navigationIcon = {
                     IconButton(onClick = {}) {

@@ -22,11 +22,11 @@ class MainActivity : AppCompatActivity() {
         setListener()
     }
 
+
     // --------- RecyclerView Method --------------
     private fun initRecyclerView() {
         binding.noteRecyclerView.adapter = noteAdapter
     }
-
 
     // --------- Set Listener ------------
     private fun setListener() = with(binding) {

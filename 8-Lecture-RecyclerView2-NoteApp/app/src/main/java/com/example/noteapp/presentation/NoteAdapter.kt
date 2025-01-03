@@ -9,6 +9,13 @@ import com.example.noteapp.databinding.ItemNoteBinding
 
 class NoteAdapter() : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
+    // ---------------------------------- Properties ----------------------------------
+    // --- to save notes ---
+    private var notes = listOf<Note>()
+
+    // --- for delete button ---
+    var onDeleteClick: (Note) -> Unit = {}
+
     // -------------------------------- Override Methods -----------------------
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         return NoteViewHolder(
@@ -27,9 +34,11 @@ class NoteAdapter() : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     override fun getItemCount() = notes.size
 
-    // ----------------- Note View Holder ------------------------
+
+    // ---------------------------------- ViewHolder ----------------------------------
     inner class NoteViewHolder(private val binding: ItemNoteBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun displayNote(note: Note) = with(binding) {
             titleTextView.text = note.title
             descriptionText.text = note.description
@@ -39,18 +48,14 @@ class NoteAdapter() : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
         }
     }
 
-
-    // --- to save notes ---
-    private var notes = listOf<Note>()
-
-    // --- for delete button ---
-    var onDeleteClick: (Note) -> Unit = {}
-
+    // ----------------------------------------- Functions -----------------------------------------
     // --- Updates notes list ---
     fun updateNotes(newNotesList: List<Note>) {
         val callBack = NoteCallBack(notes, newNotesList)
+
         val diffResult = DiffUtil.calculateDiff(callBack)
         notes = newNotesList
+
         diffResult.dispatchUpdatesTo(this)
     }
 

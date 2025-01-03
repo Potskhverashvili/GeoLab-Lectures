@@ -1,4 +1,5 @@
 package com.example.lecturedependency.domain
 
-class TestRepository {
+interface TestRepository {
+    suspend fun getSomeData()
 }

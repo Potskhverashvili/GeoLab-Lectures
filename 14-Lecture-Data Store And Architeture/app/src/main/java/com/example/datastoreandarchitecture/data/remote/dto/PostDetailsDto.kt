@@ -6,3 +6,4 @@ data class PostDetailsDto(
     val title: String,
     val body: String,
 )
+

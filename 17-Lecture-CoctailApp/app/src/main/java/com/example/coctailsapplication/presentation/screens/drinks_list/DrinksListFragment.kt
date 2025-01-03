@@ -14,8 +14,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class DrinksListFragment : Fragment() {
 
     private val viewModel by viewModel<DrinksListViewModel>()
-    private val drinksAdapter = DrinkAdapter()
     private lateinit var binding: FragmentDrinksListBinding
+    private val drinksAdapter = DrinkAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +47,6 @@ class DrinksListFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.errorFlow.collect {
-
                 Toast.makeText(requireContext(), "Something went wrong", Toast.LENGTH_SHORT).show()
             }
         }
